@@ -1,8 +1,10 @@
 package com.AnsonLongSeabra;
 
-public class Main {
+public class KhanAcademyInfections {
+
 
     public static void main(String[] args) {
-	// write your code here
+
+
     }
 }
