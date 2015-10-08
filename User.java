@@ -12,6 +12,9 @@ public class User {
     //The user's name
     public String name;
 
+    //used for identifying if a user is part of a subgraph
+    public int color;
+
     //All users this user coaches or is coached by
     public ArrayList<User> connections;
 
@@ -19,6 +22,7 @@ public class User {
 
         name = aName;
         version = 1;
+        color = 0;
         connections = new ArrayList<User>();
     }
 

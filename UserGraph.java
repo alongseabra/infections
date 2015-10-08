@@ -1,6 +1,8 @@
 package com.AnsonLongSeabra;
 
 import java.util.ArrayList;
+import java.util.Queue;
+import java.util.Stack;
 
 /**
  * Created by ansonlong-seabra on 10/8/15.
@@ -8,6 +10,8 @@ import java.util.ArrayList;
 public class UserGraph {
 
     public ArrayList<User> users;
+
+
 
     public UserGraph() {
         users = new ArrayList<User>();
@@ -57,4 +61,6 @@ public class UserGraph {
         first.connections.add(second);
         second.connections.add(first);
     }
+
+
 }

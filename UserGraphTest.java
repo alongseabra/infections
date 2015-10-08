@@ -57,14 +57,17 @@ public class UserGraphTest {
         graph = new UserGraph();
         graph.add("Alex");
         graph.add("Joe");
+        graph.add("Jill");
 
         graph.connect("Alex", "Joe");
+        graph.connect("Alex", "Jill");
+        graph.connect("Jill", "Joe");
 
         ArrayList<User> alexConnections = graph.get("Alex").connections;
         ArrayList<User> joeConnections = graph.get("Joe").connections;
 
-        assertEquals(1, alexConnections.size());
-        assertEquals(1, joeConnections.size());
+        assertEquals(2, alexConnections.size());
+        assertEquals(2, joeConnections.size());
 
         assertEquals("Joe", alexConnections.get(0).name);
         assertEquals("Alex", joeConnections.get(0).name);
