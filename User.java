@@ -26,6 +26,14 @@ public class User {
         connections = new ArrayList<User>();
     }
 
+    public boolean isInfected() {
+        if (color > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
     @Override
     public boolean equals(Object other){
 

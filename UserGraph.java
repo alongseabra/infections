@@ -28,6 +28,18 @@ public class UserGraph {
         return false;
     }
 
+    public int countInfected()
+    {
+        int count = 0;
+        for (User user : users) {
+            if (user.isInfected()) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
     public void add(String name) {
 
         User newUser = new User(name);

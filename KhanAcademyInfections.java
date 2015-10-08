@@ -36,7 +36,7 @@ public class KhanAcademyInfections {
 
         Scanner fileScanner = new Scanner(graphFile);
 
-        System.out.println("Building graph from input file...this may take a few moments");
+        System.out.println("Building graph from input file...this may take a few moments with very large files.");
 
         while (fileScanner.hasNextLine()) {
             String nextLine = fileScanner.nextLine();
@@ -63,7 +63,10 @@ public class KhanAcademyInfections {
 
         Infector infector = new Infector();
 
-        infector.getNumberOfSubgraphs(userGraph);
+        int infected = infector.getNumberOfSubgraphs(userGraph);
+
+        System.out.println("There are " + userGraph.users.size() + " users in this graph.");
+        //System.out.println(userGraph.countInfected() + " users are now infected");
 
 
 
