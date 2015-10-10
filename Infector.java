@@ -57,7 +57,7 @@ public class Infector {
 
     }
 
-    public void limitedInfect (UserGraph graph, int numToInfect) {
+    public void limitedInfect (UserGraph graph, int numToInfect, double threshold) {
 
         TopologicalSorter sorter = new TopologicalSorter();
 
@@ -65,7 +65,11 @@ public class Infector {
 
         for (User user : graph.users) {
 
-            if (infectedCount >= numToInfect) {
+            double fractionOfInfected = ((double) infectedCount) / ((double) numToInfect);
+
+            System.out.println("Fraction of infected is " + fractionOfInfected);
+
+            if (infectedCount >= numToInfect || fractionOfInfected >= threshold) {
 
                 break;
 

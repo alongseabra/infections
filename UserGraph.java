@@ -59,21 +59,24 @@ public class UserGraph {
         for (User user : users) {
             boolean happy = true;
             boolean status = user.isInfected();
-            for (User student: user.students) {
-                if (student.isInfected() != status) {
-                    happy = false;
+            if (user.students.size() > 0) {
+                for (User student: user.students) {
+                    if (student.isInfected() != status) {
+                        happy = false;
+                    }
+                }
+
+                if (complete) {
+                    if (happy) {
+                        count++;
+                    }
+                } else {
+                    if (!happy) {
+                        count++;
+                    }
                 }
             }
 
-            if (complete) {
-                if (happy) {
-                    count++;
-                }
-            } else {
-                if (!happy) {
-                    count++;
-                }
-            }
 
         }
 

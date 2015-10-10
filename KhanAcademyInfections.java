@@ -19,38 +19,46 @@ public class KhanAcademyInfections {
 
         in = new Scanner(System.in);
 
-        System.out.println("Welcome to Anson's Khan Academy project.");
+        System.out.println("Welcome to Anson's Khan Academy Infection project.");
+        System.out.println("Today we will be infecting some of our users.");
+        System.out.println("Sadly, this is not a zombie simulator, rather, our infection will spread " +
+                "a certain version of Khan Academy's site. ");
         System.out.println("Please enter the filename you will be building your user graph with: ");
 
         String fileName = in.nextLine();
 
         try {
+
             buildGraph(fileName);
+
         } catch (FileNotFoundException e) {
+
+            System.out.println("Sorry, the file was not found. Exiting.");
             e.printStackTrace();
         }
 
 
 
+        while (true) {
 
-        runSimulation();
-
-
-        System.out.println("Would you like to try a new scenario? Enter 'Y' to go again or 'N' to quit." );
-
-        String goAgain = in.nextLine().toLowerCase().trim();
-
-        if (goAgain.equals("n"))  {
-
-
-        } else {
-
-            userGraph.resetVersions();
-            infector.reset();
             runSimulation();
+
+            System.out.println("Would you like to try a new scenario? Enter 'Y' to go again or 'N' to quit: " );
+
+            String goAgain = in.nextLine().toLowerCase();
+
+
+            if (goAgain.equals("y"))  {
+
+                userGraph.resetVersions();
+                infector.reset();
+
+            } else {
+
+                break;
+
+            }
         }
-
-
 
         System.out.println("We hope you enjoyed Anson's project as much as he enjoyed making it. Goodbye!");
 
@@ -76,6 +84,7 @@ public class KhanAcademyInfections {
             } else {
 
                 System.out.println("Sorry, the graph does not contain this user. Please restart the program and try again.");
+                return;
             }
 
 
@@ -84,9 +93,21 @@ public class KhanAcademyInfections {
             System.out.println("Please enter the number of users you would like to try and infect.");
 
             int toInfect = in.nextInt();
+            in.nextLine();
 
-            infector.limitedInfect(userGraph, toInfect);
+            System.out.println("Please enter a threshold value to stop the search early. For example, if you \n " +
+                    "are satisfied with infecting 70% of the number of users you specified above, enter '0.7' ");
 
+
+            double threshold = in.nextDouble();
+            in.nextLine();
+
+            infector.limitedInfect(userGraph, toInfect, threshold);
+
+        } else {
+
+            System.out.println("Sorry, that's not a valid input. Please try again.");
+            return;
 
         }
 
@@ -132,6 +153,7 @@ public class KhanAcademyInfections {
 
     }
 
+
     public static void runAnalysis() {
 
         double confused = userGraph.countConfused();
@@ -150,7 +172,5 @@ public class KhanAcademyInfections {
         System.out.println("There are + " + happy + " happy classrooms in the graph");
         System.out.println("There are + " + unhappy + " unhappy classroms in the graph");
     }
-
-
 
 }
