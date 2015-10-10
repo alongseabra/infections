@@ -28,7 +28,7 @@ public class User {
     public User(String aName) {
 
         name = aName;
-        version = 1;
+        version = 0;
         color = 0;
         students = new ArrayList<User>();
         teachers = new ArrayList<User>();
@@ -36,7 +36,7 @@ public class User {
     }
 
     public boolean isInfected() {
-        if (color > 0) {
+        if (version > 0) {
             return true;
         }
 

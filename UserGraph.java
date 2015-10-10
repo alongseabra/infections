@@ -132,7 +132,15 @@ public class UserGraph {
     }
 
 
+    public void resetVersions() {
 
+        for (User user : users) {
+
+            user.version = 0;
+
+        }
+
+    }
     //Connects two users on the graph. Assumes they are both in the graph.
     public void connect(String firstName, String secondName ) {
 
