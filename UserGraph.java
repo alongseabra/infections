@@ -40,11 +40,57 @@ public class UserGraph {
         return count;
     }
 
+    //a confused user is someone exposed to the wrong version of the site
+    public int countConfused() {
+
+        int count = 0;
+        for (User user : users) {
+            if (user.isConfused()) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public int countClassrooms(Boolean complete) {
+
+        int count = 0;
+        for (User user : users) {
+            boolean happy = true;
+            boolean status = user.isInfected();
+            for (User student: user.students) {
+                if (student.isInfected() != status) {
+                    happy = false;
+                }
+            }
+
+            if (complete) {
+                if (happy) {
+                    count++;
+                }
+            } else {
+                if (!happy) {
+                    count++;
+                }
+            }
+
+        }
+
+        return count;
+    }
+
+
+
     public void add(String name) {
 
         User newUser = new User(name);
         users.add(newUser);
 
+    }
+
+    public void add(User u) {
+        users.add(u);
     }
 
     public User get(String name) {
@@ -58,6 +104,35 @@ public class UserGraph {
         return null;
     }
 
+    public User get(int index) {
+        return users.get(index);
+    }
+
+    public void remove(String name) {
+
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).name.equals(name)) {
+                users.remove(i);
+            }
+        }
+    }
+
+    public int indexOf(User user) {
+
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).name.equals(user.name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int size() {
+        return users.size();
+    }
+
+
+
     //Connects two users on the graph. Assumes they are both in the graph.
     public void connect(String firstName, String secondName ) {
 
@@ -70,8 +145,8 @@ public class UserGraph {
         first = get(firstName);
         second = get(secondName);
 
-        first.connections.add(second);
-        second.connections.add(first);
+        first.students.add(second);
+        second.teachers.add(first);
     }
 
 

@@ -42,8 +42,11 @@ public class KhanAcademyInfections {
             String nextLine = fileScanner.nextLine();
             String[] words = nextLine.split("\"");
 
+
+
             String firstName = words[1];
             String secondName = words [3];
+
 
             if (!userGraph.contains(firstName)) {
                 userGraph.add(firstName);
@@ -63,9 +66,19 @@ public class KhanAcademyInfections {
 
         Infector infector = new Infector();
 
-        int infected = infector.getNumberOfSubgraphs(userGraph);
+        infector.limitedInfect(userGraph, 9);
 
-        System.out.println("There are " + userGraph.users.size() + " users in this graph.");
+        double confused = userGraph.countConfused();
+        double total = userGraph.users.size();
+        double happy = userGraph.countClassrooms(true);
+        double unhappy = userGraph.countClassrooms(false);
+
+        System.out.println("There are " + total + " users in this graph.");
+        System.out.println(confused + " are confused.");
+        System.out.println((confused / total) + "% of the graph is confused");
+        //System.out.println((total - confused / total) + "% of the graph is not confused");
+        System.out.println("There are + " + happy + " happy classrooms in the graph");
+        System.out.println("There are + " + unhappy + " unhappy classroms in the graph");
         //System.out.println(userGraph.countInfected() + " users are now infected");
 
 

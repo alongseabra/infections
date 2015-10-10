@@ -15,20 +15,50 @@ public class User {
     //used for identifying if a user is part of a subgraph
     public int color;
 
-    //All users this user coaches or is coached by
-    public ArrayList<User> connections;
+    public boolean confused;
+
+    //All users this user is coaching
+    public ArrayList<User> students;
+
+    //All users this user is being coached by
+    public ArrayList<User> teachers;
+
+
 
     public User(String aName) {
 
         name = aName;
         version = 1;
         color = 0;
-        connections = new ArrayList<User>();
+        students = new ArrayList<User>();
+        teachers = new ArrayList<User>();
+        confused = false;
     }
 
     public boolean isInfected() {
         if (color > 0) {
             return true;
+        }
+
+        return false;
+    }
+
+    public boolean hasNoTeachers() {
+        if (teachers.size() == 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isConfused() {
+
+        if (!isInfected()) {
+            for (User student : students) {
+                if (student.isInfected()) {
+                    return true;
+                }
+            }
         }
 
         return false;

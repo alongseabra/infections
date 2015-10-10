@@ -37,7 +37,15 @@ public class InfectorTest {
     public void testGetNumberOfSubgraphs() throws Exception {
 
         Infector infector = new Infector();
-        assertEquals(3, infector.getNumberOfSubgraphs(graph));
+        infector.totalInfect(graph, "A");
+        for (User user : graph.users) {
+            if (user.isInfected()) {
+                System.out.println(user.name + " is infected");
+            }
+        }
+
+
+
 
     }
 
