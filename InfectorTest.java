@@ -2,19 +2,23 @@ package com.AnsonLongSeabra;
 
 import org.junit.Before;
 import org.junit.Test;
-import java.io.File;
 import java.io.FileNotFoundException;
 
 import static org.junit.Assert.*;
 
 /**
- * Created by ansonlong-seabra on 10/8/15.
+ * A class to test the Infector class
  */
 public class InfectorTest {
 
     public UserGraph graph;
+
     public Infector infector;
 
+    /**
+     * Builds graph before tests
+     * @throws Exception
+     */
     @Before
     public void setup() throws Exception {
 
@@ -25,6 +29,10 @@ public class InfectorTest {
     }
 
 
+    /**
+     * Tests limitedInfection algorithm
+     * @throws Exception
+     */
     @Test
     public void testLimitedInfection() throws Exception {
 
@@ -60,12 +68,19 @@ public class InfectorTest {
 
     }
 
+    /**
+     * Un-infects all users and sets the version of infector back to 0
+     */
     public void reset() {
 
         infector.reset();
         graph.resetVersions();
     }
 
+    /**
+     * Tests the totalInfection algorithm
+     * @throws FileNotFoundException
+     */
     @Test
     public void testTotalInfection() throws FileNotFoundException{
 

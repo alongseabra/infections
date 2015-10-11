@@ -5,10 +5,14 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by ansonlong-seabra on 10/9/15.
+ * Test for the TopologicalSorter class
  */
 public class TopologicalSorterTest {
 
+    /**
+     * Tests if topological ordering is correct
+     * @throws Exception
+     */
     @Test
     public void testOrderDepthFirst() throws Exception {
 
@@ -34,6 +38,8 @@ public class TopologicalSorterTest {
 
         UserGraph newGraph = sorter.orderDepthFirst(graph);
 
+        //Note that there is more than one way to topsort a graph,
+        //this is only one correct way
         assertEquals(graph.size(),newGraph.size());
         assertEquals("4", newGraph.get(0).name);
         assertEquals("1", newGraph.get(1).name);

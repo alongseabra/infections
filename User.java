@@ -12,11 +12,6 @@ public class User {
     //The user's name
     public String name;
 
-    //used for identifying if a user is part of a subgraph
-    public int color;
-
-    public boolean confused;
-
     //All users this user is coaching
     public ArrayList<User> students;
 
@@ -24,18 +19,24 @@ public class User {
     public ArrayList<User> teachers;
 
 
-
+    /**
+     * Sets up a new user
+     * @param aName
+     */
     public User(String aName) {
 
         name = aName;
         version = 0;
-        color = 0;
         students = new ArrayList<User>();
         teachers = new ArrayList<User>();
-        confused = false;
     }
 
+    /**
+     * Checks user's infection status
+     * @return Whether the user is infected or not
+     */
     public boolean isInfected() {
+
         if (version > 0) {
             return true;
         }
@@ -43,6 +44,10 @@ public class User {
         return false;
     }
 
+    /**
+     * Checks if a user has no teachers
+     * @return Whether the user has no teachers or not
+     */
     public boolean hasNoTeachers() {
         if (teachers.size() == 0) {
             return true;
@@ -51,11 +56,22 @@ public class User {
         return false;
     }
 
+    /**
+     * A user is "confused" if it has a teacher with a different version than its own
+     * or if it has a student with different version than its own.
+     * @return Whether or not the user is confused.
+     */
     public boolean isConfused() {
 
+        //We only check uninfected users because otherwise we would double count,
+        //once from the infected user's perspective and once from the uninfected user's
+        //perspective
         if (!isInfected()) {
+
             for (User student : students) {
+
                 if (student.isInfected()) {
+
                     return true;
                 }
             }
@@ -64,25 +80,4 @@ public class User {
         return false;
     }
 
-    @Override
-    public boolean equals(Object other){
-
-        if (other == null) {
-
-            return false;
-        }
-        if (other == this) {
-
-            return true;
-        }
-        if (!(other instanceof User)) {
-            return false;
-        }
-        User otherUser = (User)other;
-        if (otherUser.name.equals(name)) {
-            return true;
-        }
-
-        return false;
-    }
 }
