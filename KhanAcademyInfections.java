@@ -1,9 +1,7 @@
 package com.AnsonLongSeabra;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.File;
 
 public class KhanAcademyInfections {
 
@@ -23,18 +21,18 @@ public class KhanAcademyInfections {
         System.out.println("Today we will be infecting some of our users.");
         System.out.println("Sadly, this is not a zombie simulator, rather, our infection will spread " +
                 "a certain version of Khan Academy's site. ");
-        System.out.println("Please enter the filename you will be building your user graph with: ");
+        System.out.println("Please enter the complete file path you will be building your user graph with: ");
 
         String fileName = in.nextLine();
 
         try {
 
-            buildGraph(fileName);
+           userGraph = UserGraphBuilder.buildGraph(fileName);
 
         } catch (FileNotFoundException e) {
 
             System.out.println("Sorry, the file was not found. Exiting.");
-            e.printStackTrace();
+            return;
         }
 
 
@@ -62,6 +60,7 @@ public class KhanAcademyInfections {
 
         System.out.println("We hope you enjoyed Anson's project as much as he enjoyed making it. Goodbye!");
 
+        in.close();
     }
 
     public static void runSimulation() {
@@ -114,63 +113,25 @@ public class KhanAcademyInfections {
         runAnalysis();
     }
 
-    public static void buildGraph(String fileName) throws FileNotFoundException {
 
-        File graphFile = new File(fileName);
-
-        Scanner fileScanner = new Scanner(graphFile);
-
-        System.out.println("Building graph from input file...this may take a few moments with very large files.");
-
-        while (fileScanner.hasNextLine()) {
-            String nextLine = fileScanner.nextLine();
-            String[] words = nextLine.split("\"");
-
-
-
-            String firstName = words[1];
-            String secondName = words [3];
-
-
-            if (!userGraph.contains(firstName)) {
-                userGraph.add(firstName);
-
-            }
-
-            if (!userGraph.contains(secondName)) {
-                userGraph.add(secondName);
-            }
-
-            userGraph.connect(firstName, secondName);
-
-
-        }
-
-        System.out.println("Graph built!");
-
-
-
-
-    }
 
 
     public static void runAnalysis() {
 
-        double confused = userGraph.countConfused();
-        double total = userGraph.users.size();
-        double happy = userGraph.countClassrooms(true);
-        double unhappy = userGraph.countClassrooms(false);
+        int confused = userGraph.countConfused();
+        int total = userGraph.users.size();
+        int happy = userGraph.countClassrooms(true);
+        int unhappy = userGraph.countClassrooms(false);
+        int infected = userGraph.countInfected();
 
-        double infected = userGraph.countInfected();
+        double fracConfused = ((double)confused / (double)total);
 
-
-        System.out.println(userGraph.countInfected() + " users are now infected");
+        System.out.println(infected + " users are now infected");
         System.out.println("There are " + total + " users in this graph.");
         System.out.println(confused + " are confused.");
-        System.out.println((confused / total) + "% of the graph is confused");
-        //System.out.println((total - confused / total) + "% of the graph is not confused");
-        System.out.println("There are + " + happy + " happy classrooms in the graph");
-        System.out.println("There are + " + unhappy + " unhappy classroms in the graph");
+        System.out.println(String.format("%.2f", fracConfused) + "% of the graph is confused");
+        System.out.println("There are " + happy + " happy classrooms in the graph");
+        System.out.println("There are " + unhappy + " unhappy classroms in the graph");
     }
 
 }

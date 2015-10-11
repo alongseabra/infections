@@ -1,6 +1,5 @@
 package com.AnsonLongSeabra;
 
-import com.AnsonLongSeabra.TopologicalSorter;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -32,7 +31,6 @@ public class TopologicalSorterTest {
         graph.connect("3", "2");
 
         TopologicalSorter sorter = new TopologicalSorter();
-
 
         UserGraph newGraph = sorter.orderDepthFirst(graph);
 

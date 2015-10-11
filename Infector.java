@@ -42,8 +42,6 @@ public class Infector {
 
         if (user.version == 0) {
 
-            System.out.println("Infecting " + user.name);
-
             user.version++;
 
             infectedCount++;
@@ -66,8 +64,6 @@ public class Infector {
         for (User user : graph.users) {
 
             double fractionOfInfected = ((double) infectedCount) / ((double) numToInfect);
-
-            System.out.println("Fraction of infected is " + fractionOfInfected);
 
             if (infectedCount >= numToInfect || fractionOfInfected >= threshold) {
 
