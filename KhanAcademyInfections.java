@@ -30,7 +30,7 @@ public class KhanAcademyInfections {
         System.out.println("Sadly, this is not a zombie simulator, rather, our infection will spread " +
                 "a certain version of Khan Academy's site. ");
         System.out.println();
-        System.out.println("Please enter the file path you will be building your user graph with," +
+        System.out.println("Please enter the file path you will be building your user graph with, " +
                 "or enter '1' to use the default graph: ");
         String fileName = in.nextLine();
 

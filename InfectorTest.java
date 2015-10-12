@@ -115,4 +115,27 @@ public class InfectorTest {
         infector.totalInfect(graph, "51");
         assertEquals(31, graph.countInfected());
     }
+
+    /**
+     * Tests the exactInfection algorithm
+     * @throws FileNotFoundException
+     */
+    @Test
+    public void testExactInfection() throws FileNotFoundException{
+
+        graph = UserGraphBuilder.buildGraph("5nodes.txt");
+        infector = new Infector();
+
+        for (int i = 1; i < graph.size(); i++) {
+
+            infector.exactInfect(graph, i);
+            assertEquals(i, graph.countInfected());
+
+            graph.resetVersions();
+            infector.reset();
+            infector.iterationCount = 0;
+
+        }
+
+    }
 }
