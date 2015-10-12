@@ -3,6 +3,8 @@ package com.AnsonLongSeabra;
 import org.junit.Before;
 import org.junit.Test;
 import java.io.FileNotFoundException;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 
 import static org.junit.Assert.*;
 
@@ -23,7 +25,6 @@ public class InfectorTest {
 
         graph = UserGraphBuilder.buildGraph("51nodes.txt");
         infector = new Infector();
-
 
     }
 
@@ -130,7 +131,6 @@ public class InfectorTest {
 
             graph.resetVersions();
             infector.reset();
-            infector.iterationCount = 0;
 
         }
 

@@ -187,7 +187,10 @@ public class KhanAcademyInfections {
 
         double fracConfused = ((double)confused / (double)total);
 
+        System.out.println();
         System.out.println(infected + " users are now infected");
+        userGraph.printInfected();
+        System.out.println();
         System.out.println("There are " + total + " users in this graph");
         System.out.println(confused + " are confused");
         System.out.println(String.format("%.2f", fracConfused) + "% of the graph is confused");

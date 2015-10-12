@@ -17,8 +17,6 @@ public class Infector {
     //For use with exact infections
     public int desiredExactInfectedCount;
 
-    //Number of iterations exactInfect has completed
-    public int iterationCount;
 
     //For ending recursion in exactInfect
     public boolean foundExact;
@@ -30,7 +28,6 @@ public class Infector {
 
         currentVersion = 0;
         infectedCount = 0;
-        iterationCount = 0;
 
     }
 
@@ -42,7 +39,6 @@ public class Infector {
         currentVersion = 0;
         infectedCount = 0;
         foundExact = false;
-        iterationCount = 0;
     }
 
 
@@ -156,6 +152,8 @@ public class Infector {
             //If a user we're visiting isn't infected, infect them
             if (current.version == 0) {
 
+                System.out.println("Infecting " + current.name);
+
                 current.version = currentVersion;
 
                 //Infect all of this user's students
@@ -231,7 +229,7 @@ public class Infector {
 
         if (!foundExact) {
 
-            System.out.println("Exact infect failed after " + iterationCount + " iterations.");
+            System.out.println("Exact infect failed.");
 
         }
 
@@ -248,8 +246,6 @@ public class Infector {
 
             if (n == 1) {
 
-                iterationCount++;
-
                 //For each ordering of users we will infect the user and all students
                 for (User user : graph.users) {
 
@@ -259,7 +255,6 @@ public class Infector {
                     if (graph.countInfected() == desiredExactInfectedCount) {
 
                         System.out.println("Success! Exactly " + desiredExactInfectedCount + " users infected.");
-                        System.out.println("It took " + iterationCount + " iterations to get this result");
                         foundExact = true;
                         return;
 
@@ -273,15 +268,15 @@ public class Infector {
 
             }
 
-        }
 
-        //Swaps the ith and n-1th element and tries again
-        for (int i = 0; i < n; i++) {
+            //Swaps the ith and n-1th element and tries again
+            for (int i = 0; i < n; i++) {
 
-            swap(graph, graph.get(i), graph.get(n-1));
-            permute(graph, n-1);
-            swap(graph, graph.get(i), graph.get(n-1));
+                swap(graph, graph.get(i), graph.get(n - 1));
+                permute(graph, n - 1);
+                swap(graph, graph.get(i), graph.get(n - 1));
 
+            }
         }
 
 

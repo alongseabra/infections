@@ -254,5 +254,22 @@ public class UserGraph {
         second.teachers.add(first);
     }
 
+    /**
+     * Prints all infected users in graph.
+     */
+    public void printInfected() {
+
+        for (User user: users) {
+
+            if (user.isInfected()) {
+
+                System.out.println(user.name + " is infected.");
+
+            }
+
+        }
+
+    }
+
 
 }
