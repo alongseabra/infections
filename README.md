@@ -1,8 +1,8 @@
 # Anson's Khan Academy Project!
 ##Usage Instructions
-I've emailed you guys JAR files for both the simulator and the tests. Both can be run from the command line.
+I've emailed you guys JAR files and graph files for both the simulator and the tests. Both can be run from the command line.
 Just navigate to the directory you saved them, then use 
-<code>java -jar filename.jar</code> to run them.
+<code>java -jar filename.jar</code> to run them. Make sure you save my graph files in the same directory as the JARs.
 
 You can also just use the files in this repository and build them in your own IDE, though you may have to alter the file paths (using the exact path on your machine) of the graph files in the code to build them on your machine.
 
