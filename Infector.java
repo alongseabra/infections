@@ -42,6 +42,7 @@ public class Infector {
         currentVersion = 0;
         infectedCount = 0;
         foundExact = false;
+        iterationCount = 0;
     }
 
 
@@ -59,6 +60,10 @@ public class Infector {
 
     }
 
+    /**
+     * Infects the given user and all its students
+     * @param user The user to infect
+     */
     public void infectThisAndStudents(User user) {
 
         if (user.version == 0) {

@@ -38,7 +38,9 @@ public class User {
     public boolean isInfected() {
 
         if (version > 0) {
+
             return true;
+
         }
 
         return false;
@@ -49,8 +51,11 @@ public class User {
      * @return Whether the user has no teachers or not
      */
     public boolean hasNoTeachers() {
+
         if (teachers.size() == 0) {
+
             return true;
+
         }
 
         return false;

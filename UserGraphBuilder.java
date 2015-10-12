@@ -36,12 +36,15 @@ public class UserGraphBuilder {
             String secondName = words [3];
 
             if (!outputGraph.contains(firstName)) {
+
                 outputGraph.add(firstName);
 
             }
 
             if (!outputGraph.contains(secondName)) {
+
                 outputGraph.add(secondName);
+
             }
 
             outputGraph.connect(firstName, secondName);
