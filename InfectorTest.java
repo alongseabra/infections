@@ -12,7 +12,6 @@ import static org.junit.Assert.*;
 public class InfectorTest {
 
     public UserGraph graph;
-
     public Infector infector;
 
     /**
@@ -85,7 +84,7 @@ public class InfectorTest {
     public void testTotalInfection() throws FileNotFoundException{
 
         //first connected component has 31 users
-        for (int i = 1; i < 31; i++) {
+        for (int i = 0; i < 31; i++) {
 
             String name = Integer.toString(i).trim();
             infector.totalInfect(graph,  name);
@@ -111,9 +110,7 @@ public class InfectorTest {
             reset();
         }
 
-        //node 51 is an odball, in the first component
-        infector.totalInfect(graph, "51");
-        assertEquals(31, graph.countInfected());
+
     }
 
     /**
@@ -123,7 +120,7 @@ public class InfectorTest {
     @Test
     public void testExactInfection() throws FileNotFoundException{
 
-        graph = UserGraphBuilder.buildGraph("5nodes.txt");
+        graph = UserGraphBuilder.buildGraph("6nodes.txt");
         infector = new Infector();
 
         for (int i = 1; i < graph.size(); i++) {

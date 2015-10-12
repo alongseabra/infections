@@ -26,21 +26,29 @@ public class KhanAcademyInfections {
         in = new Scanner(System.in);
 
         System.out.println("Welcome to Anson's Khan Academy Infection project.");
-        System.out.println("Today we will be infecting some of our users.");
-        System.out.println("Sadly, this is not a zombie simulator, rather, our infection will spread " +
-                "a certain version of Khan Academy's site. ");
         System.out.println();
-        System.out.println("Please enter the file path you will be building your user graph with, " +
-                "or enter '1' to use the default graph: ");
+        System.out.println("Please enter the complete file path you will be building your user graph with,\n" +
+                "or enter '6', '18', or '51' to use my pre-built graphs with 6, 18, or 51 users: ");
+
         String fileName = in.nextLine();
 
         try {
 
-           if (fileName.equals("1")) {
+           if (fileName.equals("6")) {
+
+               userGraph = UserGraphBuilder.buildGraph("6nodes.txt");
+
+           } else if (fileName.equals("18")) {
+
+               userGraph = UserGraphBuilder.buildGraph("18nodes.txt");
+
+           } else if (fileName.equals("51")) {
 
                userGraph = UserGraphBuilder.buildGraph("51nodes.txt");
 
-           } else {
+           }
+
+           else {
 
                userGraph = UserGraphBuilder.buildGraph(fileName);
            }
@@ -86,20 +94,23 @@ public class KhanAcademyInfections {
      */
     public static void runSimulation() {
 
-        System.out.println("Would you like to perform a total infection of a limited infection? Enter 'T' or 'L': ");
+        System.out.println("Would you like to perform a total, limited infection, or exact infection? Enter 'T', 'L', or 'E': ");
 
         String infectionType = in.nextLine().toLowerCase().trim();
 
         //Total infection
         if (infectionType.equals("t")) {
 
-            System.out.println("Enter the name of the user who you would like to infect first: ");
+            System.out.println("Enter the name of the user who you would like to infect first. \n" +
+                    "If you are using one of the built in graphs, nodes are named numbers up to size - 1\n" +
+                    "Ex: the 6 node graph contains '0'-'5':  ");
 
             String name = in.nextLine().trim();
 
             if (userGraph.contains(name)) {
 
                 infector.totalInfect(userGraph, name);
+                runAnalysis();
 
             } else {
 
@@ -123,15 +134,37 @@ public class KhanAcademyInfections {
             in.nextLine();
 
             infector.limitedInfect(userGraph, toInfect, threshold);
+            runAnalysis();
 
-        } else { //User error
+
+        } else if (infectionType.equals("e")) {
+
+            System.out.println("Enter the exact number of users you would like to infect \n(this will take a very long" +
+                    "time on graphs bigger than 10 or so): ");
+
+            int exact = in.nextInt();
+            in.nextLine();
+
+            if (!(exact > userGraph.size()) && !(exact < 0)) {
+
+                infector.exactInfect(userGraph, exact);
+                runAnalysis();
+
+            } else {
+
+                System.out.println("Sorry that number is not valid. Please try again.");
+
+            }
+
+        }
+
+        else { //User error
 
             System.out.println("Sorry, that's not a valid input. Please try again.");
             return;
 
         }
 
-        runAnalysis();
     }
 
 
@@ -155,8 +188,8 @@ public class KhanAcademyInfections {
         double fracConfused = ((double)confused / (double)total);
 
         System.out.println(infected + " users are now infected");
-        System.out.println("There are " + total + " users in this graph.");
-        System.out.println(confused + " are confused.");
+        System.out.println("There are " + total + " users in this graph");
+        System.out.println(confused + " are confused");
         System.out.println(String.format("%.2f", fracConfused) + "% of the graph is confused");
         System.out.println("There are " + happy + " happy classrooms in the graph");
         System.out.println("There are " + unhappy + " unhappy classroms in the graph");
