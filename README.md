@@ -9,7 +9,7 @@ You can also just use the files in this repository and build them in your own ID
 Speaking of graph files, if you'd like to input your own, all you have to do is make list of edges, one on each line.
 For example, the relationship A coaches B would be represented by "A" "B". See the text files above if you need more examples.
 
-In case you're wondering what the graphs I've included actually look like, here are some drawing of them I drew up while I was working on the problem: <a href="http://imgur.com/a/KEd8E">link</a>.
+In case you're wondering what the graphs I've included actually look like, here are some drawings of them I drew up while I was working on the problem: <a href="http://imgur.com/a/KEd8E">link</a>.
 
 
 ##General approach
