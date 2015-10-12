@@ -29,7 +29,7 @@ Here's where things get interesting. My original approach to this algorithm actu
 
 However, I discovered a few things.
 
-Firstly, I did some research on social network graphs. While perhaps not completely similar to Khan Academy's user graph (it is not a social network, after all), I assume there may be some similarities, especially at scale. The main thing I found with sample data that I could find online (see <a href="https://snap.stanford.edu/data/egonets-Facebook.html">here</a> and <a href="https://snap.stanford.edu/data/com-LiveJournal.html") is that most of these graphs contain a single connected component that encompasses most, if not all of the graph. What this means is that the method described above will in most cases be horribly inaccurate, since infecting a user will essentially wipe out the whole graph or close to it every time.
+Firstly, I did some research on social network graphs. While perhaps not completely similar to Khan Academy's user graph (it is not a social network, after all), I assume there may be some similarities, especially at scale. The main thing I found with sample data that I could find online (see <a href="https://snap.stanford.edu/data/egonets-Facebook.html">here</a> and <a href="https://snap.stanford.edu/data/com-LiveJournal.html">here</a>) is that most of these graphs contain a single connected component that encompasses most, if not all of the graph. What this means is that the method described above will in most cases be horribly inaccurate, since infecting a user will essentially wipe out the whole graph or close to it every time.
 
 How did I remedy this? In two ways.
 
@@ -62,6 +62,6 @@ Finally, I'd like to find a way to optimize both the limited and exact infect al
 
 ##Final Thoughts
 What an engaging problem! I can't stop thinking about large graphs after doing it. Seriously. I was at the grocery store today and all I could think about was how insane Khan Academy's, or any large website's user graph, must look. 
-I also found my self thinking a lot about the scalability of my solutions during this project as well, something I don't do a lot at school.
+I also found my self thinking a lot about the scalability of my solutions during this project, something I don't do a lot at school.
 
 Overall, I had a great time thinking through this project. Thank you guys for taking the time to read through all of this! Cheers!
